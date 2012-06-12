@@ -140,6 +140,7 @@
             </Grid>
             <TextBox Text="{Binding ConfigRecordAsString, Mode=OneWay}"
                      DockPanel.Dock="Right"
+                     IsEnabled="False"
                      Margin="12"
                      FontFamily="Consolas"
                      VerticalScrollBarVisibility="Auto"
