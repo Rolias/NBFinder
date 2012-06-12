@@ -7,163 +7,170 @@
         xmlns:sync="clr-namespace:SyncorControls;assembly=SyncorControls"
         d:DataContext="{d:DesignInstance vm:MainWindowViewModel}"
         mc:Ignorable="d"
+        MinHeight="450"
+        MinWidth="400"
         Title="Syncor Device Finder"
-        SizeToContent="WidthAndHeight">
+        SizeToContent="WidthAndHeight"
+        Style="{StaticResource background}">
 
-    <DockPanel Style="{StaticResource background}">
-        <StackPanel Orientation="Vertical">
-            
-            <sync:HeaderedSeparator Header="Select a found device:" />
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*"
+                           MinHeight="225" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Vertical"
+                    Grid.Row="0">
+
+            <sync:HeaderedSeparator Header="Select device to show additional information:" />
             <ListBox ItemsSource="{Binding FoundDevices, Mode=OneWay}"
+                     DockPanel.Dock="Top"
                      MinHeight="20"
+                     MinWidth="100"
                      Margin="6,0,6,12"
-                     SelectedItem="{Binding ActiveIp}"
-                     ToolTip="Click on any found device to show additional information." />
+                     HorizontalAlignment="Left"
+                     SelectedItem="{Binding ActiveIp}" />
 
-            <DockPanel Margin="12">
-                <sync:HeaderedSeparator Header="Selected Device Information:" DockPanel.Dock="Top"/>
-                <TextBox Text="{Binding ConfigRecordAsString, Mode=OneWay}"
-                         DockPanel.Dock="Right"
-                         Margin="12"
-                         TextWrapping="Wrap"
-                         FontFamily="Consolas"
-                         VerticalScrollBarVisibility="Auto"
-                         ToolTip="When a device is found and selected, this area will show all the information returned by the device." />
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="Auto" />
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                    </Grid.RowDefinitions>
-
-                    <StackPanel Orientation="Horizontal"
-                                Grid.Row="0"
-                                Grid.Column="1">
-                        <Label Content="Default "
-                               Style="{StaticResource lblStyle}" />
-
-                    </StackPanel>
-
-                    <StackPanel Orientation="Horizontal"
-                                Grid.Row="0"
-                                Grid.Column="3">
-                        <Label Content="Active"
-                               Style="{StaticResource lblStyle}" />
-                    </StackPanel>
-
-                    <!-- Gateway -->
-                    <Label Content="Gateway:"
-                           Style="{StaticResource lblStyle}"
-                           Grid.Row="1"
-                           Grid.Column="0" />
-                    <TextBox IsEnabled="False"
-                             Grid.Row="1"
-                             Grid.Column="1"
-                             Text="{Binding DefaultIpGateway,Mode=OneWay}" />
-
-                    <TextBox IsEnabled="False"
-                             Grid.Row="1"
-                             Grid.Column="2"
-                             Text="{Binding ActiveIpGateway,Mode=OneWay}" />
-
-                    <!-- Address-->
-                    <Label Content="Address:"
-                           Style="{StaticResource lblStyle}"
-                           Grid.Row="2" />
-                    <TextBox IsEnabled="False"
-                             Grid.Row="2"
-                             Grid.Column="1"
-                             Text="{Binding DefaultIpAddress,Mode=OneWay}" />
-
-                    <TextBox IsEnabled="False"
-                             Grid.Row="2"
-                             Grid.Column="2"
-                             Text="{Binding ActiveIpAddress,Mode=OneWay}" />
-
-                    <!-- Address Mask-->
-                    <Label Content="Address Mask:"
-                           Style="{StaticResource lblStyle}"
-                           Grid.Row="3" />
-                    <TextBox IsEnabled="False"
-                             Grid.Row="3"
-                             Grid.Column="1"
-                             Text="{Binding DefaultIpMask,Mode=OneWay}" />
-
-                    <TextBox IsEnabled="False"
-                             Grid.Row="3"
-                             Grid.Column="2"
-                             Text="{Binding ActiveIpMask,Mode=OneWay}" />
-
-                    <!-- DNS-->
-                    <Label Content="DNS "
-                           Style="{StaticResource lblStyle}"
-                           Grid.Row="4" />
-                    <TextBox IsEnabled="False"
-                             Grid.Row="4"
-                             Grid.Column="1"
-                             Text="{Binding DefaultIpDns,Mode=OneWay}" />
-
-                    <TextBox IsEnabled="False"
-                             Grid.Row="4"
-                             Grid.Column="2"
-                             Text="{Binding ActiveIpDns,Mode=OneWay}" />
-
-                    <Label Content="Boot delay (secs.):"
-                           Margin="0,12,0,0"
-                           Style="{StaticResource lblStyle}"
-                           Grid.Row="5" />
-                    <TextBox IsEnabled="False"
-                             Grid.Row="5"
-                             Grid.Column="1"
-                             Margin="0,12,0,0"
-                             Text="{Binding BootTimeSecs,Mode=OneWay}" />
-                    <!-- Quiet Boot-->
-                    <CheckBox Content="Quiet boot"
-                              Grid.Row="6"
-                              Grid.Column="1"
-                              IsEnabled="False"
-                              Margin="0,6,0,6"
-                              HorizontalAlignment="Center"
-                              IsChecked="{Binding QuietBoot, Mode=OneWay}" />
-                    <!-- Boot Delay-->
-                    
-                </Grid>
-            </DockPanel>
-
-
-     
-            
-            <StackPanel Orientation="Horizontal"
-                        HorizontalAlignment="Center">
-
-                <Button Style="{StaticResource btnFindCancel}"
-                        Command="{Binding FindCommand}">
-                    <StackPanel Orientation="Horizontal">
-                        <Image Source="/Artwork/Find.png"/>
-                        <Label Content="Find" Style="{StaticResource btnText}"/>
-                    </StackPanel>
-                </Button>
-                <Button Style="{StaticResource btnFindCancel}"
-                        Command="{Binding CancelFindCommand}">
-                    <StackPanel Orientation="Horizontal">
-                        <Image Source="/Artwork/CancelFind.png" />
-                        <Label Content="Stop"
-                               Style="{StaticResource btnText}" />
-                    </StackPanel>
-                </Button>
-            </StackPanel>
-
+            <sync:HeaderedSeparator Header="Selected Device Information:" />
         </StackPanel>
-        
+        <DockPanel Grid.Row="1">
 
-    </DockPanel>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <Label Content="Default "
+                       Grid.Row="0"
+                       Grid.Column="1"
+                       Style="{StaticResource lblStyle}" />
+
+                <Label Content="Active "
+                       Grid.Row="0"
+                       Grid.Column="2"
+                       Style="{StaticResource lblStyle}" />
+
+                <!-- Gateway -->
+                <Label Content="Gateway:"
+                       Style="{StaticResource lblStyle}"
+                       Grid.Row="1"
+                       Grid.Column="0" />
+                <TextBox IsEnabled="False"
+                         Grid.Row="1"
+                         Grid.Column="1"
+                         Text="{Binding DefaultIpGateway,Mode=OneWay}" />
+
+                <TextBox IsEnabled="False"
+                         Grid.Row="1"
+                         Grid.Column="2"
+                         Text="{Binding ActiveIpGateway,Mode=OneWay}" />
+
+                <!-- Address-->
+                <Label Content="Address:"
+                       Style="{StaticResource lblStyle}"
+                       Grid.Row="2" />
+                <TextBox IsEnabled="False"
+                         Grid.Row="2"
+                         Grid.Column="1"
+                         Text="{Binding DefaultIpAddress,Mode=OneWay}" />
+
+                <TextBox IsEnabled="False"
+                         Grid.Row="2"
+                         Grid.Column="2"
+                         Text="{Binding ActiveIpAddress,Mode=OneWay}" />
+
+                <!-- Address Mask-->
+                <Label Content="Address Mask:"
+                       Style="{StaticResource lblStyle}"
+                       Grid.Row="3" />
+                <TextBox IsEnabled="False"
+                         Grid.Row="3"
+                         Grid.Column="1"
+                         Text="{Binding DefaultIpMask,Mode=OneWay}" />
+
+                <TextBox IsEnabled="False"
+                         Grid.Row="3"
+                         Grid.Column="2"
+                         Text="{Binding ActiveIpMask,Mode=OneWay}" />
+
+                <!-- DNS-->
+                <Label Content="DNS "
+                       Style="{StaticResource lblStyle}"
+                       Grid.Row="4" />
+                <TextBox IsEnabled="False"
+                         Grid.Row="4"
+                         Grid.Column="1"
+                         Text="{Binding DefaultIpDns,Mode=OneWay}" />
+
+                <TextBox IsEnabled="False"
+                         Grid.Row="4"
+                         Grid.Column="2"
+                         Text="{Binding ActiveIpDns,Mode=OneWay}" />
+                <!-- Boot Delay-->
+                <Label Content="Boot delay (secs.):"
+                       Margin="0,12,0,0"
+                       Style="{StaticResource lblStyle}"
+                       Grid.Row="5" />
+                <TextBox IsEnabled="False"
+                         Grid.Row="5"
+                         Grid.Column="1"
+                         Margin="0,12,0,0"
+                         Text="{Binding BootTimeSecs,Mode=OneWay}" />
+                <!-- Quiet Boot-->
+                <CheckBox Content="Quiet boot"
+                          Grid.Row="6"
+                          Grid.Column="1"
+                          IsEnabled="False"
+                          Margin="0,6,0,6"
+                          HorizontalAlignment="Center"
+                          IsChecked="{Binding QuietBoot, Mode=OneWay}" />
+
+            </Grid>
+            <TextBox Text="{Binding ConfigRecordAsString, Mode=OneWay}"
+                     DockPanel.Dock="Right"
+                     Margin="12"
+                     FontFamily="Consolas"
+                     VerticalScrollBarVisibility="Auto"
+                     HorizontalScrollBarVisibility="Auto"
+                     VerticalAlignment="Top"
+                     HorizontalAlignment="Left"
+                     ToolTip="When a device is found and selected, this area will show all the information returned by the device." />
+
+        </DockPanel>
+        <StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Center"
+                    Grid.Row="2">
+
+            <Button Style="{StaticResource btnFindCancel}"
+                    Command="{Binding FindCommand}">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/Artwork/Find.png" />
+                    <Label Content="Find"
+                           Style="{StaticResource btnText}" />
+                </StackPanel>
+            </Button>
+            <Button Style="{StaticResource btnFindCancel}"
+                    Command="{Binding CancelFindCommand}">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/Artwork/CancelFind.png" />
+                    <Label Content="Stop"
+                           Style="{StaticResource btnText}" />
+                </StackPanel>
+            </Button>
+        </StackPanel>
+
+    </Grid>
+
 </Window>
