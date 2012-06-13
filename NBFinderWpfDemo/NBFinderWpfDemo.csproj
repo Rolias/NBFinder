@@ -36,12 +36,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Syncor.MvvmLib4.0">
-      <HintPath>..\..\Syncor_CSharpLibs\ClassLibraries\Syncor.MvvmLib\bin\Release\Syncor.MvvmLib4.0.dll</HintPath>
+    <Reference Include="Syncor.MvvmLib4.0, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\Syncor.MvvmLib4.0.dll</HintPath>
     </Reference>
     <Reference Include="SyncorControls, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\SyncorControls\SyncorControls\bin\Release\SyncorControls.dll</HintPath>
+      <HintPath>..\lib\SyncorControls.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />

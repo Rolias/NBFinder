@@ -31,8 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EnumHelper">
-      <HintPath>..\..\Syncor_CSharpLibs\ClassLibraries\EnumHelper\bin\Release\EnumHelper.dll</HintPath>
+    <Reference Include="EnumHelper, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\EnumHelper.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
